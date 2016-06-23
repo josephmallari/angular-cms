@@ -13,6 +13,8 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/angcms');
 var db = mongoose.connection;
 
+var api = require('./routes/api');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -25,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api', api);
 app.use('/', routes);
 app.use('/users', users);
 
